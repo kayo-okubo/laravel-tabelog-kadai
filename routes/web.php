@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +25,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
+    Route::get('home', [Admin\HomeController::class, 'index'])->name('home');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () 
 {
