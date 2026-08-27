@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
     Route::get('users/{user}', [Admin\UserController::class, 'show'])->name('users.show');
 
     Route::resource('shops', Admin\ShopController::class);
+
+    Route::resource('categories', Admin\CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () 
