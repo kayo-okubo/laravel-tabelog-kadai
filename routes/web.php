@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
 
     Route::get('users', [Admin\UserController::class, 'index'])->name('users.index');
     Route::get('users/{user}', [Admin\UserController::class, 'show'])->name('users.show');
+
+    Route::resource('shops', Admin\ShopController::class);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () 
