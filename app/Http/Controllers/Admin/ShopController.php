@@ -51,6 +51,16 @@ class ShopController extends Controller
             'regular_holiday' => 'nullable',
             'business_hours' => 'nullable',
             'price_range' => 'required',
+                    ], [], [
+            'category_id' => 'カテゴリ',
+            'name' => '店舗名',
+            'address' => '住所',
+            'phone_number' => '電話番号',
+            'description' => '説明',
+            'image' => '店舗画像',
+            'regular_holiday' => '定休日',
+            'business_hours' => '営業時間',
+            'price_range' => '価格帯',
         ]);
 
         $shop = new Shop();

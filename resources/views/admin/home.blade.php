@@ -3,56 +3,51 @@
 @section('content')
     <div class="col container">
         <div class="row justify-content-center">
-            <div class="col-xxl-9 col-xl-10 col-lg-11">
-                <div class="row row-cols-md-3 row-cols-2 g-3 mb-5">
+            <div class="col-xl-8 col-lg-10">
+
+                <h1 class="mb-4 text-center">管理者ホーム</h1>
+
+                <div class="row row-cols-md-3 row-cols-1 g-3">
+
                     <div class="col">
-                        <div class="card bg-light">
+                        <div class="card h-100 bg-light">
                             <div class="card-body text-center">
-                                <h5 class="card-title">総会員数</h5>
-                                <p class="card-text">--名</p>
+                                <h5 class="card-title">会員管理</h5>
+
+                                <a href="{{ route('admin.users.index') }}"
+                                   class="btn btn-dark">
+                                    会員一覧
+                                </a>
                             </div>
                         </div>
                     </div>
+
                     <div class="col">
-                        <div class="card bg-light">
+                        <div class="card h-100 bg-light">
                             <div class="card-body text-center">
-                                <h5 class="card-title">無料会員数</h5>
-                                <p class="card-text">--名</p>
+                                <h5 class="card-title">店舗管理</h5>
+
+                                <a href="{{ route('admin.shops.index') }}"
+                                   class="btn btn-dark">
+                                    店舗一覧
+                                </a>
                             </div>
                         </div>
                     </div>
+
                     <div class="col">
-                        <div class="card bg-light">
+                        <div class="card h-100 bg-light">
                             <div class="card-body text-center">
-                                <h5 class="card-title">有料会員数</h5>
-                                <p class="card-text">--名</p>
+                                <h5 class="card-title">カテゴリ管理</h5>
+
+                                <a href="{{ route('admin.categories.index') }}"
+                                   class="btn btn-dark">
+                                    カテゴリ一覧
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card bg-light">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">店舗数</h5>
-                                <p class="card-text">--件</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-light">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">総予約数</h5>
-                                <p class="card-text">--件</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-light">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">月間売上</h5>
-                                <p class="card-text">--円</p>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

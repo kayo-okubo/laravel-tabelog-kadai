@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col container">
+    <div class="col container pb-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-xxl-9 col-xl-10 col-lg-11">
                 <h1 class="mb-4 text-center">店舗一覧</h1>
@@ -14,7 +14,7 @@
                         </div>
                     </form>
 
-                    <a href="{{ route('admin.shops.create') }}" class="btn text-white shadow-sm mb-3 nagoyameshi-btn">＋ 新規登録</a>
+                    <a href="{{ route('admin.shops.create') }}" class="btn btn-dark mb-3">＋ 新規登録</a>
                 </div>
 
                 @if (session('flash_message'))
@@ -32,7 +32,7 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">店舗名</th>
-                            <th scope="col">郵便番号</th>
+                            <th scope="col">カテゴリ</th>
                             <th scope="col">住所</th>
                             <th scope="col"></th>
                         </tr>
@@ -40,11 +40,11 @@
                     <tbody>
                         @foreach($shops as $shop)
                             <tr>
-                                <td>{{ $restaurant->id }}</td>
-                                <td>{{ $restaurant->name }}</td>
-                                <td>{{ substr($restaurant->postal_code, 0, 3) . '-' . substr($restaurant->postal_code, 3) }}</td>
-                                <td>{{ $restaurant->address }}</td>
-                                <td><a href="{{ route('admin.shops.show', $restaurant) }}">詳細</a></td>
+                                <td>{{ $shop->id }}</td>
+                                <td>{{ $shop->name }}</td>
+                                <td>{{ $shop->category->name }}</td>
+                                <td>{{ $shop->address }}</td>
+                                <td><a href="{{ route('admin.shops.show', $shop) }}">詳細</a></td>
                             </tr>
                         @endforeach
                     </tbody>
