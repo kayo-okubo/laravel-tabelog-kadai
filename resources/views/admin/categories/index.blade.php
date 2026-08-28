@@ -19,7 +19,7 @@
                         <input type="text" class="form-control" name="name">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">登録</button>
+                        <button type="submit" class="btn btn-dark w-50">登録</button>
                     </div>
                 </form>
             </div>
@@ -41,7 +41,7 @@
                         <input type="text" class="form-control" name="name" value="">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">更新</button>
+                        <button type="submit" class="btn btn-dark w-50">更新</button>
                     </div>
                 </form>
             </div>
@@ -60,27 +60,27 @@
                     <form action="" method="post" name="deleteCategoryForm">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn-danger">削除</button>
+                        <button type="submit" class="btn btn-dark w-50">削除</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col container">
+    <div class="col container pb-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-9">
                 <h1 class="mb-4 text-center">カテゴリ一覧</h1>
 
-                <div class="d-flex justify-content-between align-items-end flex-wrap">
-                    <form method="GET" action="{{ route('admin.categories.index') }}" class="nagoyameshi-admin-search-box mb-3">
+                <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+                    <form method="GET" action="{{ route('admin.categories.index') }}" class="flex-grow-1">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="カテゴリ名で検索" name="keyword" value="{{ $keyword }}">
-                            <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+                            <button type="submit" class="btn btn-dark px-4">検索</button>
                         </div>
                     </form>
 
-                    <a href="#" class="btn text-white shadow-sm mb-3 nagoyameshi-btn" data-bs-toggle="modal" data-bs-target="#createCategoryModal">＋ 新規登録</a>
+                    <a href="#" class="btn btn-dark px-4 text-nowrap" data-bs-toggle="modal" data-bs-target="#createCategoryModal">＋ 新規登録</a>
                 </div>
 
                 @if (session('flash_message'))

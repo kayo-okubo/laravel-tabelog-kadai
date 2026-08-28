@@ -10,17 +10,40 @@
     <div class="row">
       @foreach ($favorite_shops as $favorite_shop)
 
-      <div class="col-md-9 mt-2">
-        <div class="d-inline-flex">
+      <div class="col-md-9 mt-3 mb-3">
+        <div class="d-flex align-items-center">
 
-        <a href="{{ route('shops.show', $favorite_shop->id) }}" class="w-25">
-          <imd src="{{ asset('img/dummy.png' )}}" class="img-fluid w-100">
+        <a href="{{ route('shops.show', $favorite_shop->id) }}" style="width: 180px;">
+          @if ($favorite_shop->image)
+          <img
+            src="{{ asset('storage/shops/' . $favorite_shop->image) }}"
+            class="img-fluid rounded"
+            style="width: 180px; height: 120px; object-fit: cover;"
+            alt="{{ $favorite_shop->name }}"
+            >
+          @else
+          <div
+            class="bg-light d-flex align-items-center justify-content-center text-muted rounded"
+            style="width: 180px; heigth: 120px;"
+          >
+          No Image
+        </div>
+        @endif
         </a>
 
-        <div class="conteiner mt-3">
-          <h5 class="w-100 tabelog-favorite-item-text">
+        <div class="ms-4">
+          <h4 class="mb-2">
             {{ $favorite_shop->name }}
-          </h5>
+          </h4>
+
+          <p class="mb-1">
+            {{ $favorite_shop->category->name }}
+          </p>
+
+          <p class="mb-0">
+            {{ $favorite_shop->price_range }}
+          </p>
+
         </div>
 
         </div>
@@ -29,8 +52,8 @@
       <div class="col-md-3 d-flex align-items-center justify-content-end">
         <a
           href="{{ route('favorites.destroy', $favorite_shop->id) }}"
-          class="tabelog-favorite-item-delete"
-          oncick="event.preventDefault(); document.getElementById('favorites-destroy-form{{ $favorite_shop->id }}').submit();"
+          class="btn btn-outline-danger"
+          onclick="event.preventDefault(); document.getElementById('favorites-destroy-form{{ $favorite_shop->id }}').submit();"
         >
         削除
       </a>
@@ -46,6 +69,10 @@
       @method('DELETE')
       </form>
 
+      </div>
+
+      <div class="col-12">
+        <hr>
       </div>
 
       @endforeach

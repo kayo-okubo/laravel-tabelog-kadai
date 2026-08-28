@@ -17,20 +17,24 @@
 
     @stack('fonts')
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-    <link href="{{ asset('/css/nagoyameshi.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/tabelog.css') }}" rel="stylesheet">
 
     @stack('styles')
 </head>
 <body>
-    <div id="app" class="nagoyameshi-wrapper">
+    <div id="app">
         @include('layouts.header')
 
         <main>
             @if (Auth::guard('admin')->check())
-                <div class="container py-4 nagoyameshi-container">
+                <div class="container py-4">
                     <div class="row justify-content-center">
                         @include('layouts.sidebar')
                         @yield('content')

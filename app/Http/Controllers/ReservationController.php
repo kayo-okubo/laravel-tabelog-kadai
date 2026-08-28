@@ -45,7 +45,7 @@ class ReservationController extends Controller
 
         $reservation->save();
 
-        return back();
+        return back()->with('flash_message', '予約しました。');
     }
 
     /**
@@ -77,6 +77,10 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+
+        return redirect()
+            ->route('reservations.index')
+            ->with('flash_message', '予約をキャンセルしました。');
     }
 }

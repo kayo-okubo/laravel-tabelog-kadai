@@ -37,9 +37,17 @@
     <div class="card h-100">
 
       <a href="{{ route('shops.show', $shop) }}">
-        <img src="{{ asset('img/dummy.png') }}"
+        @if ($shop->image)
+        <img src="{{ asset('storage/shops/' . $shop->image) }}"
           class="card-img-top"
+          style="height: 220px; object-fit: cover;"
           alt="{{ $shop->name }}">
+        @else
+        <div class="card-img-top bg-light d-flex align-items-center justify-content-center text-muted"
+        style="height: 220px;">
+          No Image
+        </div>
+        @endif
       </a>
 
       <div class="card-body">
@@ -50,16 +58,18 @@
 
         <p class="card-text">
           {{ $shop->category->name }}<br>
-
           @if ($shop->reviews()->exists())
-            <span
-              class="tabelog-star-rating"
-              data-rate="{{ round($shop->reviews->avg('score') * 2) / 2 }}">
-            </span>
+          @php
+            $averageScore = round($shop->reviews->avg('score'), 1);
+          @endphp
 
-            {{ round($shop->reviews->avg('score'), 1) }}<br>
+          <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="tabelog-star-rating"
+                    data-rate="{{ round($averageScore * 2) / 2 }}">
+              </span>
+              <span>{{ $averageScore }}</span>
+          </div>
           @endif
-          
           {{ $shop->price_range }}
         </p>
 
@@ -73,14 +83,12 @@
   </div>
   @endforeach
   </div>
-  </div>
+</div>
+</div>
 
-  </div>
-
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center mt-4 mb-5">
     {{ $shops->appends(request()->query())->links() }}
   </div>
-
 </div>
 
 @endsection

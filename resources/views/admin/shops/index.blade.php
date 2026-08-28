@@ -6,15 +6,15 @@
             <div class="col-xxl-9 col-xl-10 col-lg-11">
                 <h1 class="mb-4 text-center">店舗一覧</h1>
 
-                <div class="d-flex justify-content-between align-items-end flex-wrap">
-                    <form method="GET" action="{{ route('admin.shops.index') }}" class="nagoyameshi-admin-search-box mb-3">
+                <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+                    <form method="GET" action="{{ route('admin.shops.index') }}" class="flex-grow-1">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="店舗名で検索" name="keyword" value="{{ $keyword }}">
-                            <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+                            <button type="submit" class="btn btn-dark px-4">検索</button>
                         </div>
                     </form>
 
-                    <a href="{{ route('admin.shops.create') }}" class="btn btn-dark mb-3">＋ 新規登録</a>
+                    <a href="{{ route('admin.shops.create') }}" class="btn btn-dark px-4 text-nowrap">＋ 新規登録</a>
                 </div>
 
                 @if (session('flash_message'))

@@ -2,11 +2,26 @@
 
 @section('content')
 
+@if (session('flash_message'))
+<div class="alert alert-success">
+  {{ session('flash_message') }}
+</div>
+@endif
+
 <div class="d-flex justify-content-center">
   <div class="row w-75">
 
     <div class="col-5 offset-1">
-      <img src="{{ asset('img/dummy.png') }}">
+      @if ($shop->image)
+          <img src="{{ asset('storage/shops/' . $shop->image) }}"
+              class="img-fluid"
+              alt="{{ $shop->name }}">
+      @else
+          <div class="bg-light d-flex align-items-center justify-content-center text-muted"
+              style="height: 300px; width: 100%;">
+              No Image
+          </div>
+      @endif
     </div>
 
     <div class="col">
@@ -16,14 +31,18 @@
         {{ $shop->name }}
       </h1>
 
-      @if ($shop->reviews()->exists())
-        <p>
-          <span class="tabelog-star-rating"
-                data-rate="{{ round($shop->reviews->avg('score') * 2) / 2 }}">
-          </span>
-              {{ round($shop->reviews->avg('score'), 1) }}
-        </p>
-      @endif
+          @if ($shop->reviews()->exists())
+          @php
+            $averageScore = round($shop->reviews->avg('score'), 1);
+          @endphp
+
+          <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="tabelog-star-rating"
+                    data-rate="{{ round($averageScore * 2) / 2 }}">
+              </span>
+              <span>{{ $averageScore }}</span>
+          </div>
+          @endif
 
       <p>
         {{ $shop->description }}
@@ -133,24 +152,38 @@
       <hr class="w-100">
       <h3>レビュー</h3>
 
-      @if ($shop->reviews()->exists())
-        <p>
-          <span class="tabelog-star-rating"
-                data-rate="{{ round($shop->reviews->avg('score') * 2) / 2 }}">
-          </span>
-              {{ round($shop->reviews->avg('score'), 1) }}
-        </p>
-      @endif
+          @if ($shop->reviews()->exists())
+          @php
+            $averageScore = round($shop->reviews->avg('score'), 1);
+          @endphp
+
+          <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="tabelog-star-rating"
+                    data-rate="{{ round($averageScore * 2) / 2 }}">
+              </span>
+              <span>{{ $averageScore }}</span>
+          </div>
+          @endif
       
     </div>
 
     <div class="offset-1 col-10">
       <div class="row">
         @foreach($reviews as $review)
-        <div class="offset-md-5 col-md-5">
-          <h3 class="review-score-color">{{ str_repeat('★', $review->score) }}</h3>
-          <p class="h3">{{$review->content}}</p>
-          <label>{{$review->created_at}} {{$review->user->name}}</label>
+        <div class="col-12 mb-4">
+
+          <h3 class="review-score-color mb-2">
+            {{ str_repeat('★', $review->score) }}
+          </h3>
+
+          <p class="h4 mb-2">
+            {{$review->content}}
+          </p>
+
+          <small>
+            {{ $review->created_at }} {{ $review->user->name }}
+          </small>
+          <hr class="mt-3">
         </div>
         @endforeach
       </div><br />

@@ -26,7 +26,7 @@ class ReviewController extends Controller
         $review->score = $request->input('score');
         $review->save();
 
-        return back();
+        return redirect()->route('shops.show', $request->input('shop_id'));
     }
 
 }

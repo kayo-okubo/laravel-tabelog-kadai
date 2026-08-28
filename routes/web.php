@@ -10,9 +10,7 @@ use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ShopController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,9 +35,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
     Route::resource('categories', Admin\CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
 });
 
+Route::resource('shops', ShopController::class)->only(['index', 'show']);
+
 Route::middleware(['auth', 'verified'])->group(function () 
 {
-    Route::resource('shops', ShopController::class);
 
     Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
 

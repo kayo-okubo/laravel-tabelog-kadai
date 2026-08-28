@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-5">
-      <span>
-        <a href="{{ route('mypage') }}">マイページ</a> > 会員情報の編集
-      </span>
+<div class="container d-flex justify-content-center mt-4 mb-5">
+  <div style="width: 70%; max-wigth: 800px;">
+        <a href="{{ route('mypage') }}" class="text-decoration-none">
+          ← マイページに戻る
+        </a>
 
       <h1 class="mt-3 mb-3">会員情報の編集</h1>
 
@@ -120,13 +119,13 @@
         </div>
 
         <hr>
-
-        <button type="submit" class="btn tabelog-submit-button mt-3 w-25">
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn tabelog-submit-button mt-3 px-5">
           保存
         </button>
+      </div>
 
       </form>
-    </div>
   </div>
 </div>
 
