@@ -18,11 +18,11 @@ class ShopFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->company(),
-            'description' => fake()->realText(50),
-            'address' => fake()->address(),
-            'phone_number' => fake()->phoneNumber(),
-            'regular_holiday' => fake()->randomElement([
+            'name' => $this->faker->company(),
+            'description' => $this->faker->realText(50),
+            'address' => $this->faker->address(),
+            'phone_number' => $this->faker->phoneNumber(),
+            'regular_holiday' => $this->faker->randomElement([
                 '月曜日',
                 '火曜日',
                 '水曜日',
@@ -32,20 +32,20 @@ class ShopFactory extends Factory
                 '日曜日',
                 '不定休'
             ]),
-            'business_hours' => fake()->randomElement([
+            'business_hours' => $this->faker->randomElement([
                 '11:00〜20:00',
                 '11:00〜23:00',
                 '17:00〜24:00',
                 '16:00〜01:00'
             ]),
-            'price_range' => fake()->randomElement([
+            'price_range' => $this->faker->randomElement([
                 '〜3,000円',
                 '3,000円〜5,000円',
                 '5,000円〜10,000円',
                 '10,000円〜20,000円',
                 '20,000円〜'
             ]),
-            'category_id' => fake()->numberBetween(1, 10),
+            'category_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }
