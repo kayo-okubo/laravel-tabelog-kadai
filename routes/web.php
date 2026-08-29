@@ -17,38 +17,56 @@ Route::get('/', [ShopController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin'], function () {
-    Route::get('home', [Admin\HomeController::class, 'index'])->name('home');
+    Route::get('home', [Admin\HomeController::class, 'index'])
+        ->name('home');
 
-    Route::get('users', [Admin\UserController::class, 'index'])->name('users.index');
-    Route::get('users/{user}', [Admin\UserController::class, 'show'])->name('users.show');
+    Route::get('users', [Admin\UserController::class, 'index'])
+        ->name('users.index');
+    Route::get('users/{user}', [Admin\UserController::class, 'show'])
+        ->name('users.show');
 
     Route::resource('shops', Admin\ShopController::class);
 
-    Route::resource('categories', Admin\CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('categories', Admin\CategoryController::class)
+        ->only(['index', 'store', 'update', 'destroy']);
 });
 
-Route::resource('shops', ShopController::class)->only(['index', 'show']);
+Route::resource('shops', ShopController::class)
+    ->only(['index', 'show']);
 
 Route::middleware(['auth', 'verified'])->group(function () 
 {
 
-    Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::post('reviews', [ReviewController::class, 'store'])
+        ->name('reviews.store');
+    Route::get('reviews/{review}/edit', [ReviewController::class, 'edit'])
+        ->name('reviews.edit');
+    Route::put('reviews/{review}', [ReviewController::class, 'update'])
+        ->name('reviews.update');
+    Route::delete('reviews/{review}', [ReviewController::class, 'destroy'])
+        ->name('reviews.destroy');
 
-    Route::get('users/mypage/favorite', [FavoriteController::class, 'index'])->name('mypage.favorite');
+    Route::get('users/mypage/favorite', [FavoriteController::class, 'index'])
+        ->name('mypage.favorite');
 
-    Route::post('favorites/{shop_id}', [FavoriteController::class, 'store'])->name('favorites.store');
-    Route::delete('favorites/{shop_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+    Route::post('favorites/{shop_id}', [FavoriteController::class, 'store'])
+        ->name('favorites.store');
+    Route::delete('favorites/{shop_id}', [FavoriteController::class, 'destroy'])
+        ->name('favorites.destroy');
 
     Route::resource('reservations', ReservationController::class);
 

@@ -183,6 +183,26 @@
           <small>
             {{ $review->created_at }} {{ $review->user->name }}
           </small>
+
+          @if (Auth::id() === $review->user_id)
+          <div class="mt-2 d-flex gap-2">
+            <a href="{{ route('reviews.edit', $review) }}" class="btn btn-sm btn-outline-dark">
+              編集
+            </a>
+            
+            <form method="POST" action="{{ route('reviews.destroy', $review) }}">
+              @csrf
+              @method('DELETE')
+
+              <button type="submit"
+                      class="btn btn-sm btn-outline-danger"
+                      onclick="return confirm('このレビューを削除しますか？')">
+                削除
+              </button>
+            </form>
+          </div>
+          @endif
+          
           <hr class="mt-3">
         </div>
         @endforeach
