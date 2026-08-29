@@ -50,6 +50,7 @@ Route::resource('shops', ShopController::class)
 
 Route::middleware(['auth', 'verified'])->group(function () 
 {
+    Route::middleware([Subscribed::class])->group(function () {
 
     Route::post('reviews', [ReviewController::class, 'store'])
         ->name('reviews.store');
@@ -69,6 +70,8 @@ Route::middleware(['auth', 'verified'])->group(function ()
         ->name('favorites.destroy');
 
     Route::resource('reservations', ReservationController::class);
+
+    }); //
 
     Route::controller(UserController::class)->group(function () {
         Route::get('users/mypage', 'mypage')->name('mypage');

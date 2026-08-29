@@ -78,6 +78,7 @@
       
 
     @auth
+    @if (Auth::user()->subscribed('premium_plan'))
     <form method="POST" action="{{ route('reservations.store') }}" class="m-3">
       @csrf
 
@@ -144,6 +145,15 @@
     <form id="favorites-store-form" action="{{ route('favorites.store', $shop->id) }}" method="POST" class="d-none">
       @csrf
     </form>
+
+    @else
+    <div class="m-3 text-center">
+      <p>予約・お気に入り機能は有料会員限定です。</p>
+      <a href="{{ route('subscription.create') }}" class="btn btn-dark">
+        有料プランに登録する
+      </a>
+    </div>
+    @endif
     @endauth
   </div>
 </div>
@@ -209,6 +219,8 @@
       </div><br />
 
       @auth
+      @if (Auth::user()->subscribed('premium_plan'))
+
       <div class="row">
         <div class="offset-md-5 col-md-5">
           <form method="POST" action="{{ route('reviews.store') }}">
@@ -231,6 +243,15 @@
           </form>
         </div>
       </div>
+
+      @else
+      <div class="text-center mb-4">
+        <p>レビュー投稿は有料会員限定です。</p>
+        <a href="{{ route('subscription.create') }}" class="btn btn-dark">
+          有料プランに登録する
+        </a>
+      </div>
+      @endif
       @endauth
     </div>
 
