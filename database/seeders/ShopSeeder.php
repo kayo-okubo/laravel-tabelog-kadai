@@ -24,5 +24,6 @@ class ShopSeeder extends Seeder
                 'price_range' => '3,000円〜5,000円',
                 'category_id' => (($i - 1) % 10) + 1,
             ]);
+        }
     }
 }
