@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if (session('flash_message'))
+<div class="alert alert-success">
+  {{ session('flash_message') }}
+</div>
+@endif
+
 <div class="container mt-4">
   <div class="row">
 
