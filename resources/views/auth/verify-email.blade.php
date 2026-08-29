@@ -20,6 +20,8 @@
             
             <div class="text-center">
                 <a href="{{ url('/') }}" class="btn tabelog-submit-button w-50 text-white">
+                    トップページへ
+                </a>
             </div>
         </div>
     </div>
