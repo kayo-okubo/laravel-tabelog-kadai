@@ -17,6 +17,14 @@
             <p class="text-center">
                 メール本文内のURLをクリックすると本会員登録が完了します。
             </p>
+
+            <form method="POST" action="{{ route('verification.send') }}" class="text-center mb-3">
+                @csrf
+
+                <button type="submit" class="btn tabelog-submit-button w-50 text-white">
+                    確認メールを再送
+                </button>
+            </form>
             
             <div class="text-center">
                 <a href="{{ url('/') }}" class="btn tabelog-submit-button w-50 text-white">
