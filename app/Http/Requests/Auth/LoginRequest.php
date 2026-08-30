@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
+use App\Models\Admin;
 
 class LoginRequest extends FormRequest
 {
@@ -44,11 +46,24 @@ class LoginRequest extends FormRequest
 
         $this->is('admin/*') ? $guard = 'admin' : $guard = 'web';
 
+        if ($guard === 'admin') {
+            $exists = Admin::where('email', $this->email)->exists();
+        } else {
+            $exists = User::where('email', $this->email)->exists();
+        }
+
+        if (! $exists) {
+            throw ValidationException::withMessages([
+                'email' => 'メールアドレスが登録されていません。',
+            ]);
+        }
+
+
         if (! Auth::guard($guard)->attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'password' => 'パスワードが違います。',
             ]);
         }
 
