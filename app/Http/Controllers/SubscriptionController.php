@@ -57,6 +57,8 @@ class SubscriptionController extends Controller
 
         $user->subscription('premium_plan')->cancelNow();
 
+        $user->deletePaymentMethods();
+
         return redirect('/')
             ->with('flash_message', '有料プランを解約しました。');
     }

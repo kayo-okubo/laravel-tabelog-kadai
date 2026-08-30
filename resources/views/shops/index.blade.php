@@ -31,6 +31,21 @@
       @endif
     </div>
 
+    <form method="GET" action="{{ route('shops.index') }}" class="mb-3">
+      <div class="input-group">
+        <input
+          type="text"
+          name="keyword"
+          class="form-control"
+          placeholder="店舗名で検索"
+          value="{{ request('keyword') }}"
+        >
+        <button type="submit" class="btn btn-dark">
+          検索
+        </button>
+      </div>
+    </form>
+
     <div class="mb-3">
       並び替え
       @sortablelink('created_at', '登録日')
