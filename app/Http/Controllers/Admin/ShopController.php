@@ -15,9 +15,10 @@ class ShopController extends Controller
 
         if ($keyword) {
             $shops = Shop::where('name', 'like', "%{$keyword}%")
+                ->orderBy('id')
                 ->paginate(15);
         } else {
-            $shops = $query->orderBy('id')->paginate(15);
+            $shops = Shop::orderBy('id')->paginate(15);
         }
 
         $total = $shops->total();
