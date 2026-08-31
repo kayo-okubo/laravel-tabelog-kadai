@@ -184,7 +184,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="tabelog-submit-button w-100">
+                    <button type="submit" class="mt-3 btn tabelog-submit-button w-100">
                         アカウント作成
                     </button>
                 </div>

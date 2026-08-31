@@ -34,15 +34,6 @@
                         </div>
                     </div>
 
-                    <div class="row pb-2 mb-2 border-bottom">
-                        <div class="col-3">
-                            <span class="fw-bold">フリガナ</span>
-                        </div>
-
-                        <div class="col">
-                            <span>{{ $user->kana }}</span>
-                        </div>
-                    </div>
 
                     <div class="row pb-2 mb-2 border-bottom">
                         <div class="col-3">
@@ -54,15 +45,6 @@
                         </div>
                     </div>
 
-                    <div class="row pb-2 mb-2 border-bottom">
-                        <div class="col-3">
-                            <span class="fw-bold">郵便番号</span>
-                        </div>
-
-                        <div class="col">
-                            <span>{{ substr($user->postal_code, 0, 3) . '-' . substr($user->postal_code, 3) }}</span>
-                        </div>
-                    </div>
 
                     <div class="row pb-2 mb-2 border-bottom">
                         <div class="col-3">
@@ -84,37 +66,6 @@
                         </div>
                     </div>
 
-                    <div class="row pb-2 mb-2 border-bottom">
-                        <div class="col-3">
-                            <span class="fw-bold">誕生日</span>
-                        </div>
-
-                        <div class="col">
-                            <span>
-                                @if ($user->birthday !== null)
-                                    {{ date('n月j日', strtotime($user->birthday)) }}
-                                @else
-                                    未設定
-                                @endif
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="row pb-2 mb-2 border-bottom">
-                        <div class="col-3">
-                            <span class="fw-bold">職業</span>
-                        </div>
-
-                        <div class="col">
-                            <span>
-                                @if ($user->occupation !== null)
-                                    {{ $user->occupation }}
-                                @else
-                                    未設定
-                                @endif
-                            </span>
-                        </div>
-                    </div>
 
                     <div class="row pb-2 mb-2 border-bottom">
                         <div class="col-3">
