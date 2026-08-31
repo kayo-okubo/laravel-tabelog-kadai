@@ -69,8 +69,7 @@
                         <img src="{{ asset('storage/shops/' . $shop->image) }}"
                              class="w-100 img-fluid">
                     @else
-                        <img src="{{ asset('img/dummy.png') }}"
-                             class="w-100 img-fluid">
+                        <div class="text-muted">画像なし</div>
                     @endif
                 </div>
 

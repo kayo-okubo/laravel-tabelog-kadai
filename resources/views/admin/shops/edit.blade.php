@@ -56,6 +56,15 @@
 
                 <div class="mb-3">
                     <label for="image" class="form-label fw-bold">店舗画像</label>
+
+                    @if ($shop->image)
+                    <div class="mb-2">
+                        <p class="mb-1">現在の画像</p>
+                        <img src="{{ asset('storage/shops/' . $shop->image) }}"
+                            class="img-fluid"
+                            style="max-width: 300px;">
+                    </div>
+                    @endif
                     <input type="file"
                            name="image"
                            id="image"
