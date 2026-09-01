@@ -12,13 +12,13 @@
   <div class="row">
 
   {{-- サイドバー --}}
-  <div class="col-3">
+  <div class="col-12 col-md-3">
     @component('components.sidebar', ['categories' => $categories])
     @endcomponent
   </div>
 
   {{-- 店舗一覧 --}}
-  <div class="col-9">
+  <div class="col-12 col-md-9">
 
     <div class="container">
       @if ($category !== null)
@@ -55,7 +55,7 @@
 
   @foreach ($shops as $shop)
 
-  <div class="col-4 mb-4">
+  <div class="col-12 col-4-md-4 mb-4">
     <div class="card h-100">
 
       <a href="{{ route('shops.show', $shop) }}">
