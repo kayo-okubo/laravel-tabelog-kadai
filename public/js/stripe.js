@@ -37,7 +37,6 @@ cardButton.addEventListener('click', async (e) => {
     }
 
     if (error) {
-      console.log(error);
       cardError.style.display = 'block';
       let li = document.createElement('li');
       li.textContent = error['message'];
